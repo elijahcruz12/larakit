@@ -45,7 +45,7 @@ class InstallIdeHelperCommand extends Command
 
         $this->comment('Installing barryvdh/laravel-debugbar...');
 
-        $output = ComposerUsage::install($package, true);
+        $output = ComposerUsage::require($package, true);
 
         $this->info($output);
 
