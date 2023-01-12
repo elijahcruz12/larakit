@@ -35,8 +35,9 @@ class InstallDebugBarCommand extends Command
 
         $exists = ComposerUsage::check($package);
 
-        if($exists){
+        if ($exists) {
             $this->error('Package already exists, returning...');
+
             return Command::SUCCESS;
         }
 

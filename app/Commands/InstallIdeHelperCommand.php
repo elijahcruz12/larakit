@@ -37,8 +37,9 @@ class InstallIdeHelperCommand extends Command
 
         $exists = ComposerUsage::check($package);
 
-        if($exists){
+        if ($exists) {
             $this->error('Package already exists, returning...');
+
             return Command::SUCCESS;
         }
 
@@ -50,7 +51,7 @@ class InstallIdeHelperCommand extends Command
 
         $this->comment('Barryvdh/laravel-debugbar installed successfully.');
 
-        if($this->option('run')) {
+        if ($this->option('run')) {
             $this->comment('Running the ide-helper commands');
             $firstProcess = new Process(['php', 'artisan', 'ide-helper:generate']);
             $firstProcess->run();

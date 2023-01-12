@@ -9,7 +9,7 @@ class ComposerUsage
     /**
      * Checks to see if the package is already required
      *
-     * @param string|null $package
+     * @param  string|null  $package
      * @return bool
      */
     public static function check(string $package = null): bool
@@ -29,7 +29,7 @@ class ComposerUsage
     /**
      * Runs the Composer Require command
      *
-     * @param string|null $package
+     * @param  string|null  $package
      * @param $dev
      * @return string
      */
