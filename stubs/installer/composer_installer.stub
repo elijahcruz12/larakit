@@ -20,7 +20,7 @@ class DummyClass extends Command
      *
      * @var string
      */
-    protected $description = 'Installs ____ to the laravel application.';
+    protected $description = 'Installs dummy-name to the Laravel application.';
 
     /**
      * Execute the console command.

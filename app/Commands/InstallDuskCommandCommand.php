@@ -7,22 +7,21 @@ use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
 use Larakit\ComposerUsage;
 
-class InstallFortifyCommand extends Command
+class InstallDuskCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:fortify
-        {--c|config : Installs the config file}';
+    protected $signature = 'install:dusk';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs Laravel Fortify to the Laravel application.';
+    protected $description = 'Installs Laravel Dusk to the Laravel application.';
 
     /**
      * Execute the console command.
@@ -31,9 +30,9 @@ class InstallFortifyCommand extends Command
      */
     public function handle()
     {
-        $package = 'laravel/fortify';
+        $package = 'laravel/dusk';
 
-        $dev = false;
+        $dev = true;
 
                 $this->comment('Checking to see if package is already required...');
 
@@ -53,10 +52,12 @@ class InstallFortifyCommand extends Command
 
                 $this->comment($package . ' installed successfully.');
 
-                if($this->option('config')){
-                    $this->info(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
-                }
+                $command = ['php', 'artisan', 'breeze', 'install'];
+
+                $this->info(RunProcess::run($command));
 
                 return Command::SUCCESS;
+
+
     }
 }
