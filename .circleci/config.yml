@@ -5,10 +5,7 @@ jobs:
     docker:
       - image: cimg/php:8.0-node
     steps:
-      - run:
-          name: Show File Dir
-          command: |
-            ls -lha
+      - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "composer.json" }}
