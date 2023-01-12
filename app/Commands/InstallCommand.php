@@ -48,6 +48,10 @@ class InstallCommand extends Command
                 $this->package = 'barryvdh/laravel-ide-helper';
                 $this->dev = true;
                 break;
+            case 'livewire':
+                $this->package = 'livewire/livewire';
+                $this->dev = false;
+                break;
         };
     }
 
