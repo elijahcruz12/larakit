@@ -41,4 +41,7 @@ jobs:
           command: larakit install:idehelper
       - run:
           name: Test Installing Livewire
-          command: larakit install:livewire --views
+          command: larakit install:livewire --view
+      - run:
+          name: Test Installing Fortify
+          command: larakit install:fortify

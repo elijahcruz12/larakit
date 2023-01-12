@@ -14,7 +14,8 @@ class InstallFortifyCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'install:fortify';
+    protected $signature = 'install:fortify
+        {--c|config : Installs the config file}';
 
     /**
      * The description of the command.
@@ -52,7 +53,9 @@ class InstallFortifyCommand extends Command
 
                 $this->comment($package . ' installed successfully.');
 
-                $this->output(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
+                if($this->option('config')){
+                    $this->info(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
+                }
 
                 return Command::SUCCESS;
     }
