@@ -30,7 +30,6 @@ class InstallListCommand extends Command
     {
         $composer_items = [
             ['debugbar', 'barryvdh/laravel-debugbar'],
-            ['idehelper', 'barryvdh/laravel-ide-helper'],
             ['ide-helper', 'barryvdh/laravel-ide-helper'],
             ['livewire', 'livewire/livewire'],
         ];

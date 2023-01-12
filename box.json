@@ -5,6 +5,7 @@
         "bootstrap",
         "config",
         "src",
+        "stubs",
         "vendor"
     ],
     "files": [
