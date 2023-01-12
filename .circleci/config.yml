@@ -20,13 +20,21 @@ jobs:
             php larakit app:build --build-version=1.0-ci-test
       - run:
           name: Move build to /usr/local/bin
-          command: sudo mv ./builds/larakit
+          command: sudo mv ./builds/larakit /usr/local/bin/larakit
       - run:
           name: Install Laravel
           command: |
             composer global require laravel/installer
             export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+            mkdir ~/laravel-test
+            cd ~/laravel-test
             laravel new .
       - run:
-          name: Run Custom Command
-          command: php artisan my-custom-command
+          name: Test Installing Debugbar
+          command: larakit install debugbar
+      - run:
+          name: Test Installing Ide-Helper
+          command: larakit install idehelper
+      - run:
+          name: Test Installing Livewire
+          command: larakit install livewire
