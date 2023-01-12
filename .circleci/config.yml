@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build the App
           command: |
-            php larakit app:build --build-version=1.0-ci-test
+            php larakit app:build --build-version=1.0-ci-test -v
       - run:
           name: Move build to /usr/local/bin
           command: sudo mv ./builds/larakit /usr/local/bin/larakit
