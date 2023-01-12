@@ -21,10 +21,10 @@ Installing Larakit is as simple as a global require:
 
 ## Installing Dev Packages
 
-You can install packages like the Debugbar or Laravel-Ide-Helper simply be running the `install` command:
+You can install packages like the Debugbar or Laravel-Ide-Helper simply be running it's `install` command:
 
 ```
-    larakit install <item>
+    larakit install:<item>
 ```
 
 If you want to view the list of items you can install with the above command, run the `install:list` command:
