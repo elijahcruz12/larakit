@@ -2,6 +2,8 @@
 
 namespace Larakit;
 
+use Symfony\Component\Process\Process;
+
 class RunProcess
 {
     /**
