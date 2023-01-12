@@ -35,10 +35,10 @@ jobs:
             cd laravel-test/
       - run:
           name: Test Installing Debugbar
-          command: larakit install debugbar
+          command: larakit install:debugbar
       - run:
           name: Test Installing Ide-Helper
-          command: larakit install idehelper
+          command: larakit install:idehelper
       - run:
           name: Test Installing Livewire
           command: larakit install livewire
