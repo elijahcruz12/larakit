@@ -32,6 +32,7 @@ class InstallListCommand extends Command
             ['debugbar', 'barryvdh/laravel-debugbar'],
             ['idehelper', 'barryvdh/laravel-ide-helper'],
             ['ide-helper', 'barryvdh/laravel-ide-helper'],
+            ['livewire', 'livewire/livewire']
         ];
 
         $this->info('Composer Installed Items');
