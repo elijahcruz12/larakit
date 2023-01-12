@@ -1,0 +1,32 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/php:8.0-node
+    steps:
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            sudo mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Install Composer Dependencies
+          command: |
+            composer install
+      - run:
+          name: Build the App
+          command: |
+            php larakit app:build --build-version=1.0-ci-test
+      - run:
+          name: Move build to /usr/local/bin
+          command: sudo mv ./builds/larakit
+      - run:
+          name: Install Laravel
+          command: |
+            composer global require laravel/installer
+            export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+            laravel new .
+      - run:
+          name: Run Custom Command
+          command: php artisan my-custom-command
