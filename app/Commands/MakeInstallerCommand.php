@@ -17,7 +17,7 @@ class MakeInstallerCommand extends Command
         {name : The name of the package}
         {--C|composer : Make the installer install the package via composer}
         {--N|npm : Make the installer install the package via NPM}
-        {--a|all: Make the installer use both composer and npm}';
+        {--A|all: Make the installer use both composer and npm}';
 
     /**
      * The description of the command.
@@ -36,17 +36,17 @@ class MakeInstallerCommand extends Command
 
         $name = $this->argument('name');
 
-        if(!$this->option('composer') && !$this->option('npm') && !$this->option('all')){
+        if(!$this->option('composer') && !$this->option('npm')){
             $composer = $this->ask('Does the installer require composer?');
             $npm = $this->ask('Does the installer require npm?');
         }
         else {
             $composer = $this->option('composer');
             $npm = $this->option('npm');
-            if($this->option('all')){
-                $composer = true;
-                $npm = true;
-            }
+//            if($this->option('all')){
+//                $composer = true;
+//                $npm = true;
+//            }
         }
 
         if($composer && $npm){
@@ -54,12 +54,19 @@ class MakeInstallerCommand extends Command
             return Command::FAILURE;
         }
         elseif($composer && !$npm){
-            $composer_stub = get_file_content(base_path('/stubs/installer/composer_installer.stub'));
+            $composer_stub = file_get_contents(base_path('/stubs/installer/composer_installer.stub'));
             $composer_stub = str_replace('dummy-name', $name, $composer_stub);
 
-            $nameToCamel = Str::camel($name);
-            $filename = 'Install' . $nameToCamel . 'Command.php';
-            file_put_contents(base_path('/app/Commands/' . $filename));
+            $className = 'Install' . Str::ucfirst($name) . 'Command';
+
+            $composer_stub = str_replace('DummyClass', $className, $composer_stub);
+
+            $filename = $className . 'Command.php';
+
+            $file_location = base_path('/app/Commands/' . $filename);
+
+            file_put_contents($file_location, $composer_stub);
+            $this->info('Successfully created ' . $filename . '.');
         }
         elseif(!$composer && $npm){
             $this->error('NPM Installs not ready just yet.');

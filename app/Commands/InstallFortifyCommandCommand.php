@@ -3,17 +3,18 @@
 namespace DummyNamespace;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
 use Larakit\ComposerUsage;
 
-class DummyClass extends Command
+class InstallFortifyCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:dummy-name';
+    protected $signature = 'install:fortify';
 
     /**
      * The description of the command.
@@ -29,7 +30,7 @@ class DummyClass extends Command
      */
     public function handle()
     {
-        $package = 'dummy-name';
+        $package = 'laravel/fortify';
 
         $dev = false;
 
@@ -50,6 +51,8 @@ class DummyClass extends Command
                 $this->info($output);
 
                 $this->comment($package . ' installed successfully.');
+
+                $this->output(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
 
                 return Command::SUCCESS;
     }
