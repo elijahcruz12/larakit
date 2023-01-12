@@ -10,8 +10,8 @@
     ],
     "files": [
         "composer.json",
-        "stubs/composer_installer.stub",
-        "stubs/npm_installer.stub"
+        "stubs/installer/composer_installer.stub",
+        "stubs/installer/npm_installer.stub"
     ],
     "exclude-composer-files": false,
     "exclude-dev-files": false,
