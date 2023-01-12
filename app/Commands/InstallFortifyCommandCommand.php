@@ -2,10 +2,9 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Console\Scheduling\Schedule;
+use Larakit\ComposerUsage;
 use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
-use Larakit\ComposerUsage;
 
 class InstallFortifyCommand extends Command
 {
@@ -35,28 +34,28 @@ class InstallFortifyCommand extends Command
 
         $dev = false;
 
-                $this->comment('Checking to see if package is already required...');
+        $this->comment('Checking to see if package is already required...');
 
-                $exists = ComposerUsage::check($package);
+        $exists = ComposerUsage::check($package);
 
-                if ($exists) {
-                    $this->error('Package already exists, returning...');
+        if ($exists) {
+            $this->error('Package already exists, returning...');
 
-                    return Command::SUCCESS;
-                }
+            return Command::SUCCESS;
+        }
 
-                $this->comment('Installing ' . $package . '...');
+        $this->comment('Installing '.$package.'...');
 
-                $output = ComposerUsage::require($package, $dev);
+        $output = ComposerUsage::require($package, $dev);
 
-                $this->info($output);
+        $this->info($output);
 
-                $this->comment($package . ' installed successfully.');
+        $this->comment($package.' installed successfully.');
 
-                if($this->option('config')){
-                    $this->info(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
-                }
+        if ($this->option('config')) {
+            $this->info(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
+        }
 
-                return Command::SUCCESS;
+        return Command::SUCCESS;
     }
 }

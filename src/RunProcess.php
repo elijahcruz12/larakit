@@ -7,12 +7,12 @@ class RunProcess
     /**
      * Uses Symfony Process to run a command.
      *
-     * @param array $command
+     * @param  array  $command
      * @return string
      */
     public static function run(array $command = []): string
     {
-        if($command = []){
+        if ($command = []) {
             return '';
         }
 

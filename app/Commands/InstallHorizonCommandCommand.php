@@ -5,22 +5,21 @@ namespace DummyNamespace;
 use Larakit\ComposerUsage;
 use LaravelZero\Framework\Commands\Command;
 
-class InstallCashierCommand extends Command
+class InstallHorizonCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:cashier';
+    protected $signature = 'install:horizon';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs Laravel Cashier to the Laravel application.
-        {--p|paddle : Installs the Paddle version of Cashier}';
+    protected $description = 'Installs Laravel Horizon to the Laravel application.';
 
     /**
      * Execute the console command.
@@ -29,11 +28,7 @@ class InstallCashierCommand extends Command
      */
     public function handle()
     {
-        $package = 'laravel/cashier';
-
-        if ($this->option('paddle')) {
-            $package = $package.'-paddle';
-        }
+        $package = 'laravel/horizon';
 
         $dev = false;
 

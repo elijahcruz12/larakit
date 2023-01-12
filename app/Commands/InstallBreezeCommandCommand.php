@@ -2,10 +2,9 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Console\Scheduling\Schedule;
+use Larakit\ComposerUsage;
 use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
-use Larakit\ComposerUsage;
 
 class InstallBreezeCommand extends Command
 {
@@ -39,47 +38,46 @@ class InstallBreezeCommand extends Command
 
         $dev = true;
 
-                $this->comment('Checking to see if package is already required...');
+        $this->comment('Checking to see if package is already required...');
 
-                $exists = ComposerUsage::check($package);
+        $exists = ComposerUsage::check($package);
 
-                if ($exists) {
-                    $this->error('Package already exists, returning...');
+        if ($exists) {
+            $this->error('Package already exists, returning...');
 
-                    return Command::SUCCESS;
-                }
+            return Command::SUCCESS;
+        }
 
-                $this->comment('Installing ' . $package . '...');
+        $this->comment('Installing '.$package.'...');
 
-                $output = ComposerUsage::require($package, $dev);
+        $output = ComposerUsage::require($package, $dev);
 
-                $this->info($output);
+        $this->info($output);
 
-                $command = ['php', 'artisan', 'breeze:install'];
+        $command = ['php', 'artisan', 'breeze:install'];
 
-                if($this->option('react')){
-                    $command[] = 'react';
-                }
-                if($this->option('vue')) {
-                    $command[] = 'vue';
-                }
-                if($this->option('api')){
-                    $command[] = 'api';
-                }
+        if ($this->option('react')) {
+            $command[] = 'react';
+        }
+        if ($this->option('vue')) {
+            $command[] = 'vue';
+        }
+        if ($this->option('api')) {
+            $command[] = 'api';
+        }
 
-                if($this->option('dark')){
-                    $command[]= '--dark';
-                }
+        if ($this->option('dark')) {
+            $command[] = '--dark';
+        }
 
-                if($this->option('ssr')) {
-                    $command[] = '--ssr';
-                }
+        if ($this->option('ssr')) {
+            $command[] = '--ssr';
+        }
 
-                $this->info(RunProcess::run($command));
+        $this->info(RunProcess::run($command));
 
+        $this->comment($package.' installed successfully.');
 
-                $this->comment($package . ' installed successfully.');
-
-                return Command::SUCCESS;
+        return Command::SUCCESS;
     }
 }

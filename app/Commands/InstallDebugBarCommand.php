@@ -4,6 +4,7 @@ namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Larakit\ComposerUsage;
+use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
 
 class InstallDebugBarCommand extends Command
@@ -46,6 +47,10 @@ class InstallDebugBarCommand extends Command
         $output = ComposerUsage::require($package, true);
 
         $this->info($output);
+
+        $command = ['php', 'artisan', 'horizon:install'];
+
+        $this->info(RunProcess::run($command));
 
         $this->comment('Barryvdh/laravel-debugbar installed successfully.');
 

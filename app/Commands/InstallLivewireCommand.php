@@ -52,14 +52,14 @@ class InstallLivewireCommand extends Command
 
         $this->comment('Barryvdh/laravel-debugbar installed successfully.');
 
-        if($this->option('view')) {
+        if ($this->option('view')) {
             // Get the app.blade.stub file
             $stub = file_get_contents(base_path('stubs/app.blade.stub'));
 
-            Storage::makeDirectory(getcwd() . '/resources/views/layouts');
+            Storage::makeDirectory(getcwd().'/resources/views/layouts');
 
             // Replace the view with the stub
-            File::put(getcwd() . '/resources/views/layouts/app.blade.php', $stub);
+            File::put(getcwd().'/resources/views/layouts/app.blade.php', $stub);
         }
 
         return Command::SUCCESS;
