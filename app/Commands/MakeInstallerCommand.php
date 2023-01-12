@@ -34,6 +34,8 @@ class MakeInstallerCommand extends Command
     public function handle()
     {
 
+        $name = $this->argument('name');
+
         if(!$this->option('composer') && !$this->option('npm') && !$this->option('all')){
             $composer = $this->ask('Does the installer require composer?');
             $npm = $this->ask('Does the installer require npm?');
