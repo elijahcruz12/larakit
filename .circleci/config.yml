@@ -30,9 +30,9 @@ jobs:
           command: |
             composer global require laravel/installer
             export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-            mkdir ~/laravel-test
-            cd ~/laravel-test
-            laravel new .
+            cd ~/
+            laravel new laravel-test
+            cd laravel-test/
       - run:
           name: Test Installing Debugbar
           command: larakit install debugbar
