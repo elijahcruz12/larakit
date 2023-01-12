@@ -22,7 +22,7 @@
         "nunomaduro/termwind": "^1.14"
     },
     "require-dev": {
-        "laravel/pint": "^1.2",
+        "laravel/pint": "^1.4",
         "mockery/mockery": "^1.4.4",
         "pestphp/pest": "^1.21.3"
     },
@@ -30,7 +30,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Larakit\\": "src/"
         }
     },
     "autoload-dev": {

@@ -9,6 +9,7 @@ use Symfony\Component\Process\Process;
 class InstallCommand extends Command
 {
     private string $package = '';
+
     private bool $dev = false;
 
     private bool $isComposer = true;
@@ -52,7 +53,7 @@ class InstallCommand extends Command
                 $this->package = 'livewire/livewire';
                 $this->dev = false;
                 break;
-        };
+        }
     }
 
     /**
@@ -69,7 +70,7 @@ class InstallCommand extends Command
     /**
      * Checks to see if the package is already installed via Composer
      *
-     * @param string|null $package
+     * @param  string|null  $package
      * @return bool
      */
     private function check_composer(string $package = null): bool
@@ -89,10 +90,9 @@ class InstallCommand extends Command
      */
     private function installComposerPackage(): bool
     {
-
         $exists = $this->check_composer($this->package);
 
-        if($exists){
+        if ($exists) {
             return false;
         }
 
@@ -101,10 +101,11 @@ class InstallCommand extends Command
             $command[] = '--dev';
         }
         $command[] = $this->package;
-        $this->info('Running: ' . implode(' ', $command));
+        $this->info('Running: '.implode(' ', $command));
         $process = new Process($command);
         $process->run();
         $this->info($process->getOutput());
+
         return true;
     }
 }
