@@ -54,7 +54,7 @@ class InstallLivewireCommand extends Command
 
         if ($this->option('view')) {
             // Get the app.blade.stub file
-            $stub = file_get_contents(base_path('stubs/app.blade.stub'));
+            $stub = file_get_contents(base_path('stubs/installer/composer_installer.stub'));
 
             Storage::makeDirectory(getcwd().'/resources/views/layouts');
 
