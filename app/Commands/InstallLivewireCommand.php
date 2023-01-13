@@ -44,13 +44,13 @@ class InstallLivewireCommand extends Command
             return Command::SUCCESS;
         }
 
-        $this->comment('Installing barryvdh/laravel-debugbar...');
+        $this->comment('Installing livewire/livewire...');
 
         $output = ComposerUsage::require($package, true);
 
         $this->info($output);
 
-        $this->comment('Barryvdh/laravel-debugbar installed successfully.');
+        $this->comment('livewire/livewire installed successfully.');
 
         if ($this->option('view')) {
             // Get the app.blade.stub file
