@@ -12,15 +12,15 @@ class InstallCashierCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'install:cashier';
+    protected $signature = 'install:cashier
+        {--p|paddle : Installs the Paddle version of Cashier}';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs Laravel Cashier to the Laravel application.
-        {--p|paddle : Installs the Paddle version of Cashier}';
+    protected $description = 'Installs Laravel Cashier to the Laravel application';
 
     /**
      * Execute the console command.
