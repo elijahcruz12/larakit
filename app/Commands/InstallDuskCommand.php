@@ -2,26 +2,25 @@
 
 namespace App\Commands;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Larakit\ComposerUsage;
 use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
 
-class InstallDebugBarCommand extends Command
+class InstallDuskCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:debugbar';
+    protected $signature = 'install:dusk';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs barryvdh\'s Laravel Debugbar';
+    protected $description = 'Installs Laravel Dusk to the Laravel application.';
 
     /**
      * Execute the console command.
@@ -30,7 +29,9 @@ class InstallDebugBarCommand extends Command
      */
     public function handle()
     {
-        $package = 'barryvdh/laravel-debugbar';
+        $package = 'laravel/dusk';
+
+        $dev = true;
 
         $this->comment('Checking to see if package is already required...');
 
@@ -42,29 +43,18 @@ class InstallDebugBarCommand extends Command
             return Command::SUCCESS;
         }
 
-        $this->comment('Installing barryvdh/laravel-debugbar...');
+        $this->comment('Installing '.$package.'...');
 
-        $output = ComposerUsage::require($package, true);
+        $output = ComposerUsage::require($package, $dev);
 
         $this->info($output);
 
-        $command = ['php', 'artisan', 'horizon:install'];
+        $command = ['php', 'artisan', 'dusk:install'];
 
         $this->info(RunProcess::run($command));
 
-        $this->comment('Barryvdh/laravel-debugbar installed successfully.');
+        $this->comment($package.' installed successfully.');
 
         return Command::SUCCESS;
-    }
-
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
-    public function schedule(Schedule $schedule): void
-    {
-        // $schedule->command(static::class)->everyMinute();
     }
 }

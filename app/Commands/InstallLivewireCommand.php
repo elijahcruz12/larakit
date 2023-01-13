@@ -44,22 +44,24 @@ class InstallLivewireCommand extends Command
             return Command::SUCCESS;
         }
 
-        $this->comment('Installing barryvdh/laravel-debugbar...');
+        $this->comment('Installing livewire/livewire...');
 
         $output = ComposerUsage::require($package, true);
 
         $this->info($output);
 
-        $this->comment('Barryvdh/laravel-debugbar installed successfully.');
+        $this->comment('livewire/livewire installed successfully.');
 
-        if($this->option('view')) {
+        if ($this->option('view')) {
             // Get the app.blade.stub file
-            $stub = file_get_contents(base_path('stubs/app.blade.stub'));
+            $stub = file_get_contents(base_path('stubs/installer/composer_installer.stub'));
 
-            Storage::makeDirectory(getcwd() . '/resources/views/layouts');
+            mkdir(getcwd().'/resources/views/layouts', 0755);
+
+            touch(getcwd().'/resources/views/layouts/app.blade.php');
 
             // Replace the view with the stub
-            File::put(getcwd() . '/resources/views/layouts/app.blade.php', $stub);
+            File::put(getcwd().'/resources/views/layouts/app.blade.php', $stub);
         }
 
         return Command::SUCCESS;

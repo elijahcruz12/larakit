@@ -35,13 +35,21 @@ jobs:
             cd laravel-test/
       - run:
           name: Test Installing Debugbar
-          command: larakit install:debugbar
+          command: |
+            cd ~/laravel-test
+            larakit install:debugbar
       - run:
           name: Test Installing Ide-Helper
-          command: larakit install:idehelper
+          command: |
+            cd ~/laravel-test
+            larakit install:idehelper
       - run:
           name: Test Installing Livewire
-          command: larakit install:livewire --view
+          command: |
+            cd ~/laravel-test
+            larakit install:livewire --view
       - run:
           name: Test Installing Fortify
-          command: larakit install:fortify
+          command: |
+            cd ~/laravel-test
+            larakit install:fortify

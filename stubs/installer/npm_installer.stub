@@ -1,28 +1,26 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
-use Larakit\ComposerUsage;
+use Larakit\NpmUsage;
 
-class InstallFortifyCommand extends Command
+class DummyClass extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:fortify
-        {--c|config : Installs the config file}';
+    protected $signature = 'install:dummy-name';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs ____ to the laravel application.';
+    protected $description = 'Installs dummy-name to the Laravel application.';
 
     /**
      * Execute the console command.
@@ -31,13 +29,13 @@ class InstallFortifyCommand extends Command
      */
     public function handle()
     {
-        $package = 'laravel/fortify';
+        $package = 'dummy-name';
 
         $dev = false;
 
                 $this->comment('Checking to see if package is already required...');
 
-                $exists = ComposerUsage::check($package);
+                $exists = NpmUsage::check($package);
 
                 if ($exists) {
                     $this->error('Package already exists, returning...');
@@ -47,15 +45,11 @@ class InstallFortifyCommand extends Command
 
                 $this->comment('Installing ' . $package . '...');
 
-                $output = ComposerUsage::require($package, $dev);
+                $output = NpmUsage::require($package, $dev);
 
                 $this->info($output);
 
                 $this->comment($package . ' installed successfully.');
-
-                if($this->option('config')){
-                    $this->info(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
-                }
 
                 return Command::SUCCESS;
     }

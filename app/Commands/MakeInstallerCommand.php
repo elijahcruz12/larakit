@@ -33,14 +33,12 @@ class MakeInstallerCommand extends Command
      */
     public function handle()
     {
-
         $name = $this->argument('name');
 
-        if(!$this->option('composer') && !$this->option('npm')){
+        if (! $this->option('composer') && ! $this->option('npm')) {
             $composer = $this->ask('Does the installer require composer?');
             $npm = $this->ask('Does the installer require npm?');
-        }
-        else {
+        } else {
             $composer = $this->option('composer');
             $npm = $this->option('npm');
 //            if($this->option('all')){
@@ -49,31 +47,31 @@ class MakeInstallerCommand extends Command
 //            }
         }
 
-        if($composer && $npm){
+        if ($composer && $npm) {
             $this->error('NPM Installs not ready just yet.');
+
             return Command::FAILURE;
-        }
-        elseif($composer && !$npm){
+        } elseif ($composer && ! $npm) {
             $composer_stub = file_get_contents(base_path('/stubs/installer/composer_installer.stub'));
             $composer_stub = str_replace('dummy-name', $name, $composer_stub);
 
-            $className = 'Install' . Str::ucfirst($name) . 'Command';
+            $className = 'Install'.Str::ucfirst($name).'Command';
 
             $composer_stub = str_replace('DummyClass', $className, $composer_stub);
 
-            $filename = $className . 'Command.php';
+            $filename = $className.'.php';
 
-            $file_location = base_path('/app/Commands/' . $filename);
+            $file_location = base_path('/app/Commands/'.$filename);
 
             file_put_contents($file_location, $composer_stub);
-            $this->info('Successfully created ' . $filename . '.');
-        }
-        elseif(!$composer && $npm){
+            $this->info('Successfully created '.$filename.'.');
+        } elseif (! $composer && $npm) {
             $this->error('NPM Installs not ready just yet.');
+
             return Command::FAILURE;
-        }
-        else {
+        } else {
             $this->error('You must select the type of installer or use the proper flag.');
+
             return Command::FAILURE;
         }
     }
