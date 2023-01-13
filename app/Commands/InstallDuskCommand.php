@@ -1,31 +1,26 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Commands;
 
 use Larakit\ComposerUsage;
 use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
 
-class InstallBreezeCommand extends Command
+class InstallDuskCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:breeze
-        {--dark : Adds dark mode support to Breeze}
-        {--vue : Adds Vue to Breeze}
-        {--react: Adds React to Breeze}
-        {--ssr: Adds Inertia SSR support to Breeze}
-        {--api: Scaffolds an authentication API for breeze}';
+    protected $signature = 'install:dusk';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs Laravel Breeze to the Laravel application.';
+    protected $description = 'Installs Laravel Dusk to the Laravel application.';
 
     /**
      * Execute the console command.
@@ -34,7 +29,7 @@ class InstallBreezeCommand extends Command
      */
     public function handle()
     {
-        $package = 'laravel/breeze';
+        $package = 'laravel/dusk';
 
         $dev = true;
 
@@ -54,25 +49,7 @@ class InstallBreezeCommand extends Command
 
         $this->info($output);
 
-        $command = ['php', 'artisan', 'breeze:install'];
-
-        if ($this->option('react')) {
-            $command[] = 'react';
-        }
-        if ($this->option('vue')) {
-            $command[] = 'vue';
-        }
-        if ($this->option('api')) {
-            $command[] = 'api';
-        }
-
-        if ($this->option('dark')) {
-            $command[] = '--dark';
-        }
-
-        if ($this->option('ssr')) {
-            $command[] = '--ssr';
-        }
+        $command = ['php', 'artisan', 'dusk:install'];
 
         $this->info(RunProcess::run($command));
 

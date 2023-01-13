@@ -1,6 +1,6 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Commands;
 
 use Larakit\ComposerUsage;
 use LaravelZero\Framework\Commands\Command;

@@ -1,27 +1,26 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Commands;
 
 use Larakit\ComposerUsage;
-use Larakit\RunProcess;
 use LaravelZero\Framework\Commands\Command;
 
-class InstallFortifyCommand extends Command
+class InstallCashierCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'install:fortify
-        {--c|config : Installs the config file}';
+    protected $signature = 'install:cashier';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Installs Laravel Fortify to the Laravel application.';
+    protected $description = 'Installs Laravel Cashier to the Laravel application.
+        {--p|paddle : Installs the Paddle version of Cashier}';
 
     /**
      * Execute the console command.
@@ -30,7 +29,11 @@ class InstallFortifyCommand extends Command
      */
     public function handle()
     {
-        $package = 'laravel/fortify';
+        $package = 'laravel/cashier';
+
+        if ($this->option('paddle')) {
+            $package = $package.'-paddle';
+        }
 
         $dev = false;
 
@@ -51,10 +54,6 @@ class InstallFortifyCommand extends Command
         $this->info($output);
 
         $this->comment($package.' installed successfully.');
-
-        if ($this->option('config')) {
-            $this->info(RunProcess::run(['php', 'artisan', 'vendor:publish', '--provider="Laravel\Fortify\FortifyServiceProvider"']));
-        }
 
         return Command::SUCCESS;
     }

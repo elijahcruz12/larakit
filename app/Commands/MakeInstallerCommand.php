@@ -59,7 +59,7 @@ class MakeInstallerCommand extends Command
 
             $composer_stub = str_replace('DummyClass', $className, $composer_stub);
 
-            $filename = $className.'Command.php';
+            $filename = $className.'.php';
 
             $file_location = base_path('/app/Commands/'.$filename);
 
