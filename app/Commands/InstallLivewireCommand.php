@@ -58,6 +58,8 @@ class InstallLivewireCommand extends Command
 
             Storage::makeDirectory(getcwd().'/resources/views/layouts');
 
+            touch(getcwd().'/resources/views/layouts/app.blade.php');
+
             // Replace the view with the stub
             File::put(getcwd().'/resources/views/layouts/app.blade.php', $stub);
         }
