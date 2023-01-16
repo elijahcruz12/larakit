@@ -27,6 +27,10 @@ You can install packages like the Debugbar or Laravel-Ide-Helper simply be runni
     larakit install:<item>
 ```
 
+Most packages have flags to change the way they are installed. This includes flags that are built into how the package is installed itself. For example, breeze has a `--dark` flag to have dark mode support. That means that `make:breeze` has a `--dark` command. 
+
+There are also some packages that have more than one version of it, like Cashier. For this we'll add a flag to switch between the two. So the `install:cashier` command has a `--paddle` flag to install the paddle version instead of the Stripe version.
+
 ## Currently installable packages
 
 The list below is the packages you can currently install using Larakit:
