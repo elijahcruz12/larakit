@@ -35,17 +35,10 @@ class MakeInstallerCommand extends Command
     {
         $name = $this->argument('name');
 
-        if (! $this->option('composer') && ! $this->option('npm')) {
-            $composer = $this->ask('Does the installer require composer?');
-            $npm = $this->ask('Does the installer require npm?');
-        } else {
-            $composer = $this->option('composer');
-            $npm = $this->option('npm');
-//            if($this->option('all')){
-//                $composer = true;
-//                $npm = true;
-//            }
-        }
+        $composer = true;
+        $npm = false;
+
+        $this->info('NPM Installs are not ready yet.');
 
         if ($composer && $npm) {
             $this->error('NPM Installs not ready just yet.');
