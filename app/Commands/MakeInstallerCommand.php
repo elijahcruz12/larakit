@@ -16,7 +16,8 @@ class MakeInstallerCommand extends Command
     protected $signature = 'make:installer
         {name : The name of the package}
         {--C|composer : Make the installer install the package via composer}
-        {--N|npm : Make the installer install the package via NPM}';
+        {--N|npm : Make the installer install the package via NPM}
+        {--M|mult: Make the installer have the ability to install multiple packages}';
 
     /**
      * The description of the command.
