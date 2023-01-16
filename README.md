@@ -47,4 +47,4 @@ Want to contribute by making an installer for another package?
 
 First create an issue describing what you want to add to this package
 
-If it looks like something people will want, you can create a PR for it. We recommend using the `make:installer` command, as it makes it uses it's own stub.
+If it looks like something people will want, you can create a PR for it. We recommend using the `make:installer` command, as it makes it uses it's own stub. Enter in the name of the package in all Lowercase, and only letters. This will allow the command to make the command in a simple way.
