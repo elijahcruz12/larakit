@@ -16,8 +16,7 @@ class MakeInstallerCommand extends Command
     protected $signature = 'make:installer
         {name : The name of the package}
         {--C|composer : Make the installer install the package via composer}
-        {--N|npm : Make the installer install the package via NPM}
-        {--A|all: Make the installer use both composer and npm}';
+        {--N|npm : Make the installer install the package via NPM}';
 
     /**
      * The description of the command.
@@ -35,13 +34,11 @@ class MakeInstallerCommand extends Command
     {
         $name = $this->argument('name');
 
-        $composer = true;
-        $npm = false;
-
-        $this->info('NPM Installs are not ready yet.');
+        $composer = $this->option('composer');
+        $npm = $this->option('npm');
 
         if ($composer && $npm) {
-            $this->error('NPM Installs not ready just yet.');
+            $this->error('Package installer cannot install more than one package at a time yet.');
 
             return Command::FAILURE;
         } elseif ($composer && ! $npm) {
@@ -59,14 +56,25 @@ class MakeInstallerCommand extends Command
             file_put_contents($file_location, $composer_stub);
             $this->info('Successfully created '.$filename.'.');
         } elseif (! $composer && $npm) {
-            $this->error('NPM Installs not ready just yet.');
+            $npm_stub = file_get_contents(base_path('/stubs/installer/npm_installer.stub'));
+            $npm_stub = str_replace('dummy-name', $name, $npm_stub);
+            $className = 'Install'.Str::ucfirst($name).'Command';
 
-            return Command::FAILURE;
+            $npm_stub = str_replace('DummyClass', $className, $npm_stub);
+
+            $filename = $className.'.php';
+
+            $file_location = base_path('/app/Commands/'.$filename);
+
+            file_put_contents($file_location, $npm_stub);
+            $this->info('Successfully created '.$filename.'.');
         } else {
             $this->error('You must select the type of installer or use the proper flag.');
 
             return Command::FAILURE;
         }
+
+        return Command::SUCCESS;
     }
 
     /**
