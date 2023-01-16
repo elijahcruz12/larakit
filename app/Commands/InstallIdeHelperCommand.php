@@ -15,7 +15,7 @@ class InstallIdeHelperCommand extends Command
      * @var string
      */
     protected $signature = 'install:ide-helper
-        {--run: Run the ide-helper}';
+        {--R|run: Run the ide-helper}';
 
     /**
      * The description of the command.
