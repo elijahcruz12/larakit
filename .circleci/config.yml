@@ -42,7 +42,7 @@ jobs:
           name: Test Installing Ide-Helper
           command: |
             cd ~/laravel-test
-            larakit install:idehelper
+            larakit install:ide-helper
       - run:
           name: Test Installing Livewire
           command: |
