@@ -38,3 +38,13 @@ The list below is the packages you can currently install using Larakit:
 - Laravel Horizon
 - Laravel Ide-Helper
 - Livewire
+
+There will be more packages to come in the future.
+
+## Contributing
+
+Want to contribute by making an installer for another package?
+
+First create an issue describing what you want to add to this package
+
+If it looks like something people will want, you can create a PR for it. We recommend using the `make:installer` command, as it makes it uses it's own stub.
