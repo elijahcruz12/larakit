@@ -31,7 +31,7 @@ class InstallIdeHelperCommand extends Command
      */
     public function handle()
     {
-        $package = 'barryvdh/laravel-debugbar';
+        $package = 'barryvdh/laravel-ide-helper';
 
         $this->comment('Checking to see if package is already required...');
 
@@ -43,13 +43,13 @@ class InstallIdeHelperCommand extends Command
             return Command::SUCCESS;
         }
 
-        $this->comment('Installing barryvdh/laravel-debugbar...');
+        $this->comment('Installing barryvdh/laravel-ide-helper...');
 
         $output = ComposerUsage::require($package, true);
 
         $this->info($output);
 
-        $this->comment('Barryvdh/laravel-debugbar installed successfully.');
+        $this->comment('barryvdh/laravel-ide-helper installed successfully.');
 
         if ($this->option('run')) {
             $this->comment('Running the ide-helper commands');
