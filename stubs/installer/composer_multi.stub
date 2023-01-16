@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Commands;
+
+use Illuminate\Console\Scheduling\Schedule;
+use LaravelZero\Framework\Commands\Command;
+use Larakit\ComposerUsage;
+
+class DummyClass extends Command
+{
+    /**
+     * The signature of the command.
+     *
+     * @var string
+     */
+    protected $signature = 'install:dummy-name';
+
+    /**
+     * The description of the command.
+     *
+     * @var string
+     */
+    protected $description = 'Installs dummy-name to the Laravel application.';
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $packages = ['dummy-name'];
+
+        $dev = false;
+
+                $this->comment('Checking to see if packages are already required...');
+
+                $exists = ComposerUsage::checkMulti($packages);
+
+                if ($exists) {
+                    $this->error('At least one package already exists, returning...');
+
+                    return Command::SUCCESS;
+                }
+
+                foreach ($packages as $package){
+                    $this->comment('Installing ' . $package . '...');
+                }
+
+                $output = ComposerUsage::requireMulti($packages, $dev);
+
+                $this->info($output);
+
+                return Command::SUCCESS;
+    }
+}
