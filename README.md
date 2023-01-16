@@ -27,8 +27,14 @@ You can install packages like the Debugbar or Laravel-Ide-Helper simply be runni
     larakit install:<item>
 ```
 
-If you want to view the list of items you can install with the above command, run the `install:list` command:
+## Currently installable packages
 
-```
-    larakit install:list
-```
+The list below is the packages you can currently install using Larakit:
+
+- Laravel Breeze
+- Laravel Cashier (Stripe and Paddle)
+- Laravel Debugbar
+- Laravel Dusk
+- Laravel Horizon
+- Laravel Ide-Helper
+- Livewire
